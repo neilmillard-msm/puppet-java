@@ -1,17 +1,15 @@
-class java (
-  
-  $source_url, 
-  $java_major_version, 
-  $java_minor_version,
-
-  ) inherits java::params {
+class java (  
+  $source_url = "https://download.oracle.com/otn-pub/java/jdk/7u51-b13", 
+  $java_major_version = 7, 
+  $java_minor_version = 51,
+  ) {
  
   $java_filename = "jdk-${java_major_version}u${java_minor_version}-linux-x64.rpm"
 
-  # Download the jdk from our S3 bucket
+  # Download the jdk from location of choice
   include wget
   wget::fetch { 'jdk':
-    source      => "${source}/$java_filename",
+    source      => "${source_url}/$java_filename",
     destination => "/usr/local/$java_filename",
     timeout     => 0,
     verbose     => false,
