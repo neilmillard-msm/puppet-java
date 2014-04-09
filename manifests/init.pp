@@ -23,4 +23,13 @@ class java (
     require  => Wget::Fetch['jdk'],
   }
 
+  # Configure JAVA_HOME globlly.
+  file { '/etc/profile.d/java.sh':
+    ensure  => file,
+    owner   => root,
+    group   => root,
+    mode    => 644,
+    content => "export JAVA_HOME=/usr/java/default",
+  }
+
 }
