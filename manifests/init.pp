@@ -16,8 +16,8 @@ class java (
   }
 
   # Install the jdk
-  exec {"remove.any.java":
-    command => "/bin/rpm -qa | /bin/grep java | /usr/bin/xargs /bin/rpm -ev || continue"
+  exec {"remove.any.openjdk":
+    command => "/bin/rpm -qa | /bin/grep openjdk | /usr/bin/xargs /bin/rpm -ev || continue"
   }->
   exec {"remove.any.jdk":
     command => "/bin/rpm -qa | /bin/grep jdk | /usr/bin/xargs /bin/rpm -ev || continue"
