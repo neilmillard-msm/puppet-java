@@ -19,9 +19,6 @@ class java (
   exec {"remove.any.openjdk":
     command => "/bin/rpm -qa | /bin/grep openjdk | /usr/bin/xargs /bin/rpm -ev || continue"
   }->
-  exec {"remove.any.jdk":
-    command => "/bin/rpm -qa | /bin/grep jdk | /usr/bin/xargs /bin/rpm -ev || continue"
-  }->
   package {'jdk':
     provider => rpm,
     ensure   => "1.${java_major_version}.0_${java_minor_version}-fcs",
