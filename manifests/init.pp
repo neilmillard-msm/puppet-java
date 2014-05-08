@@ -28,7 +28,7 @@ class java (
     ensure   => absent,
   }
 
-  # Install the jdk
+  # Install the preferred jdk
   package {'jdk':
     provider => rpm,
     ensure   => "1.${java_major_version}.0_${java_minor_version}-fcs",
