@@ -15,10 +15,20 @@ class java (
     verbose     => false,
   }
 
+
+  # Remove OpenJDK 6
+  package {'java-1.6.0-openjdk':
+    provider => rpm,
+    ensure   => absent,
+  }
+
+  # Remove OpenJDK 7
+  package {'java-1.7.0-openjdk':
+    provider => rpm,
+    ensure   => absent,
+  }
+
   # Install the jdk
-  exec {"remove.any.openjdk":
-    command => "/bin/rpm -qa | /bin/grep openjdk | /usr/bin/xargs /bin/rpm -ev || continue"
-  }->
   package {'jdk':
     provider => rpm,
     ensure   => "1.${java_major_version}.0_${java_minor_version}-fcs",
