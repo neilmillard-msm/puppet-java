@@ -18,13 +18,11 @@ class java (
 
   # Remove OpenJDK 6
   package {'java-1.6.0-openjdk':
-    provider => rpm,
     ensure   => absent,
   }
 
   # Remove OpenJDK 7
   package {'java-1.7.0-openjdk':
-    provider => rpm,
     ensure   => absent,
   }
 
