@@ -15,7 +15,18 @@ class java (
     verbose     => false,
   }
 
-  # Install the jdk
+
+  # Remove OpenJDK 6
+  package {'java-1.6.0-openjdk':
+    ensure   => absent,
+  }
+
+  # Remove OpenJDK 7
+  package {'java-1.7.0-openjdk':
+    ensure   => absent,
+  }
+
+  # Install the preferred jdk
   package {'jdk':
     provider => rpm,
     ensure   => "1.${java_major_version}.0_${java_minor_version}-fcs",
