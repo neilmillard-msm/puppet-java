@@ -6,7 +6,7 @@ class java (
 
   $java_filename = "jdk-${java_major_version}u${java_minor_version}-linux-x64.rpm"
 
-  # Download the jdk from location of choice
+  #Download the jdk from location of choice
   include wget
   wget::fetch { 'jdk':
     source      => "${source_url}/$java_filename",
