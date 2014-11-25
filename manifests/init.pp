@@ -1,12 +1,12 @@
-class java (  
-  $source_url = "https://download.oracle.com/otn-pub/java/jdk/7u51-b13", 
-  $java_major_version = 7, 
+class java (
+  $source_url = "https://download.oracle.com/otn-pub/java/jdk/7u51-b13",
+  $java_major_version = 7,
   $java_minor_version = 51,
   ) {
- 
+
   $java_filename = "jdk-${java_major_version}u${java_minor_version}-linux-x64.rpm"
 
-  # Download the jdk from location of choice
+  #Download the jdk from location of choice
   include wget
   wget::fetch { 'jdk':
     source      => "${source_url}/$java_filename",
