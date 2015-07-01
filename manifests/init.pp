@@ -3,6 +3,7 @@ class java (
   $java_major_version = 7,
   $java_minor_version = 51,
   $additional_versions = {},
+  $add_jce = true
   ) {
 
   include wget
@@ -56,6 +57,14 @@ class java (
       ensure   => "1.${major}.0_${minor}-fcs",
       source   => "/usr/local/$java_filename",
       require  => Wget::Fetch["jdk ${source}/$java_filename"],
+    }
+
+    # Add JCE
+    if ( str2bool( $add_jce ) ) {
+      class { 'java::jce':
+        java_major_version  => "$major",
+        jdk_path            => "/usr/java/jdk1.${major}.0_${minor}"
+      }
     }
   }
 
