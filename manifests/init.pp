@@ -69,12 +69,13 @@ class java (
   }
 
   create_resources ( 'install_version', $additional_versions )
-  install_version {"$java_major_version_$java_minor_version": }
+  install_version {"${java_major_version}_${java_minor_version}": }
 
   file { "default java":
-    path   => '/usr/java/default',
-    ensure => 'link',
-    mode   => '0755',
-    target => "/usr/java/jdk1.${major}.0_${minor}"
+    path    => '/usr/java/default',
+    ensure  => 'link',
+    mode    => '0755',
+    target  => "/usr/java/jdk1.${java_major_version}.0_${java_minor_version}",
+    require => Package["jdk 1.${java_major_version}.0_${java_minor_version}-fcs"]
   }
 }
