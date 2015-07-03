@@ -31,7 +31,7 @@ class java (
     content => "export JAVA_HOME=/usr/java/default",
   }
 
-  define install_version ($major_minor=$title, $rpm_filename=undef, $source=$java::source_url) {
+  define install_version ($major_minor=$title, $rpm_filename=undef, $source=$java::source_url, $add_jce=$java::add_jce) {
     $split_out = split($major_minor, "_")
     $major = $split_out[0]
     $minor = $split_out[1]
