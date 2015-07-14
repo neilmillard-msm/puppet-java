@@ -31,7 +31,7 @@ class java (
     content => "export JAVA_HOME=/usr/java/default",
   }
 
-  define install_version ($major_minor=$title, $rpm_filename=undef, $source=$java::source_url) {
+  define install_version ($major_minor=$title, $rpm_filename=undef, $source=$java::source_url, $add_jce=$java::add_jce) {
     $split_out = split($major_minor, "_")
     $major = $split_out[0]
     $minor = $split_out[1]
@@ -54,7 +54,6 @@ class java (
     package {"jdk 1.${major}.0_${minor}-fcs":
       name     => 'jdk',
       provider => rpm,
-      ensure   => "1.${major}.0_${minor}-fcs",
       source   => "/usr/local/$java_filename",
       require  => Wget::Fetch["jdk ${source}/$java_filename"],
     }
