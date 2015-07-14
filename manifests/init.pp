@@ -54,7 +54,6 @@ class java (
     package {"jdk 1.${major}.0_${minor}-fcs":
       name     => 'jdk',
       provider => rpm,
-      ensure   => "1.${major}.0_${minor}-fcs",
       source   => "/usr/local/$java_filename",
       require  => Wget::Fetch["jdk ${source}/$java_filename"],
     }
