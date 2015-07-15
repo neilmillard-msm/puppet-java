@@ -72,7 +72,8 @@ class java (
     if ( str2bool( $add_jce ) ) {
       class { 'java::jce':
         java_major_version  => "$major",
-        jdk_path            => "/usr/java/jdk1.${major}.0_${minor}"
+        jdk_path            => "/usr/java/jdk1.${major}.0_${minor}",
+        require             => Package["jdk 1.${major}.0_${minor}-fcs"]
       }
     }
   }
