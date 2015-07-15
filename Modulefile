@@ -1,5 +1,5 @@
 name 'puppet-java'
-version '0.0.8'
+version '0.0.9'
 source 'git@github.com:MSMFG/puppet-java.git'
 author 'Cake Team'
 license 'MIT License'
