@@ -46,7 +46,7 @@ class java (
       $package_root_name = $package_name
     } else {
       if ($major == "7") {
-        $package_root_name = "jdk-1.${major}.0_${minor}"
+        $package_root_name = "jdk"
       } else {
         $package_root_name = "jdk1.${major}.0_${minor}"
       }
