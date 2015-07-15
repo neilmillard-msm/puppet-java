@@ -31,7 +31,7 @@ class java (
     content => "export JAVA_HOME=/usr/java/default",
   }
 
-  define install_version ($major_minor=$title, $rpm_filename=undef, $source=$java::source_url, $add_jce=$java::add_jce) {
+  define install_version ($major_minor=$title, $package_name=undef, $rpm_filename=undef, $source=$java::source_url, $add_jce=$java::add_jce) {
     $split_out = split($major_minor, "_")
     $major = $split_out[0]
     $minor = $split_out[1]
@@ -42,6 +42,16 @@ class java (
       $java_filename = "jdk-${major}u${minor}-linux-x64.rpm"
     }
 
+    if ($package_name != '') {
+      $package_root_name = $package_name
+    } else {
+      if ($major == "7") {
+        $package_root_name = "jdk-1.${major}.0_${minor}"
+      } else {
+        $package_root_name = "jdk1.${major}.0_${minor}"
+      }
+    }
+
     # Download the jdk from location of choice
     wget::fetch { "jdk ${source}/$java_filename":
       source      => "${source}/$java_filename",
@@ -50,10 +60,10 @@ class java (
       verbose     => false,
     }
 
-    # Install the JDK
     package {"jdk 1.${major}.0_${minor}-fcs":
-      name     => 'jdk',
+      name     => "${package_root_name}",
       provider => rpm,
+      ensure   => "1.${major}.0_${minor}-fcs",
       source   => "/usr/local/$java_filename",
       require  => Wget::Fetch["jdk ${source}/$java_filename"],
     }
