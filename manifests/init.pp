@@ -88,4 +88,18 @@ class java (
     target  => "/usr/java/jdk1.${java_major_version}.0_${java_minor_version}",
     require => Package["jdk 1.${java_major_version}.0_${java_minor_version}-fcs"]
   }
+  $fetch_cert = hiera_hash('java::fetch_certificate', undef)
+  if ( $fetch_cert) {
+    $_hostname = keys($fetch_cert)
+    $_pass = $fetch_cert["$_hostname"][key]
+    $_port = $fetch_cert["$_hostname"][port]
+    notice($_port)
+      class { 'java::create-truststore':
+       hostname => $_hostname,
+       port => $_port,
+       passphrase => $_pass,
+       require => File["/usr/java/default"]
+     }
+  }
+
 }
