@@ -4,8 +4,7 @@ class java (
   $source_url          = 'https://download.oracle.com/otn-pub/java/jdk/7u51-b13',
   $java_major_version  = 7,
   $java_minor_version  = 51,
-  $additional_versions = {},
-  $add_jce             = true
+  $additional_versions = {}
   ) {
 
   include wget
