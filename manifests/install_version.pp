@@ -10,20 +10,20 @@ define java::install_version (
   $major = $split_out[0]
   $minor = $split_out[1]
 
-  if ($rpm_filename != '') {
-    $java_filename = $rpm_filename
-  } else {
+  if empty($rpm_filename) {
     $java_filename = "jdk-${major}u${minor}-linux-x64.rpm"
+  } else {
+    $java_filename = $rpm_filename
   }
 
-  if ($package_name != '') {
-    $package_root_name = $package_name
-  } else {
+  if empty($package_name) {
     if ($major == '7') {
       $package_root_name = 'jdk'
     } else {
       $package_root_name = "jdk1.${major}.0_${minor}"
     }
+  } else {
+    $package_root_name = $package_name
   }
 
   # Download the jdk from location of choice
