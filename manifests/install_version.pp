@@ -2,8 +2,8 @@
 #
 define java::install_version (
   $major_minor  = $title,
-  $package_name = undef,
-  $rpm_filename = undef,
+  $package_name = '',
+  $rpm_filename = '',
   $source       = $java::source_url
 ) {
   $split_out = split($major_minor, '_')
