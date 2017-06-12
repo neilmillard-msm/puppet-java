@@ -4,8 +4,7 @@ define java::install_version (
   $major_minor  = $title,
   $package_name = undef,
   $rpm_filename = undef,
-  $source       = $java::source_url,
-  $add_jce      = $java::add_jce
+  $source       = $java::source_url
 ) {
   $split_out = split($major_minor, '_')
   $major = $split_out[0]
@@ -43,12 +42,4 @@ define java::install_version (
     require  => Wget::Fetch["jdk ${source}/${java_filename}"],
   }
 
-  # Add JCE
-  if ( str2bool( $add_jce ) ) {
-    class { 'java::jce':
-      java_major_version => $major,
-      jdk_path           => "/usr/java/jdk1.${major}.0_${minor}",
-      require            => Package["jdk 1.${major}.0_${minor}-fcs"],
-    }
-  }
 }
