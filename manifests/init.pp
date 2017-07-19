@@ -4,7 +4,8 @@ class java (
   $source_url          = 'https://download.oracle.com/otn-pub/java/jdk/7u51-b13',
   $java_major_version  = 7,
   $java_minor_version  = 51,
-  $additional_versions = {}
+  $additional_versions = {},
+  $add_jce = true
   ) {
 
   include wget
@@ -35,6 +36,7 @@ class java (
   create_resources ( 'install_version', $additional_versions )
   java::install_version {"${java_major_version}_${java_minor_version}":
     source => $source_url,
+    add_jce => $add_jce,
   }
 
   file { 'default java':
