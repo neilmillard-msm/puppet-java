@@ -44,13 +44,11 @@ define java::install_version (
   }
 
   # Add JCE
-  if ( str2bool( $add_jce ) ) {
-    class { 'java::jce':
-      java_major_version  => "$major",
-      jdk_path            => "/usr/java/jdk1.${major}.0_${minor}",
-      source              => $source,
-      require             => Package["jdk 1.${major}.0_${minor}-fcs"]
-    }
+  class { 'java::jce':
+    java_major_version => "$major",
+    jdk_path           => "/usr/java/jdk1.${major}.0_${minor}",
+    repo_url           => $source,
+    require            => Package["jdk 1.${major}.0_${minor}-fcs"]
   }
 
 }
