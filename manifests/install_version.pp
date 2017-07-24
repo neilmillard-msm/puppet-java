@@ -47,7 +47,6 @@ define java::install_version (
   class { 'java::jce':
     java_major_version => "$major",
     jdk_path           => "/usr/java/jdk1.${major}.0_${minor}",
-    repo_url           => $source,
     require            => Package["jdk 1.${major}.0_${minor}-fcs"]
   }
 
