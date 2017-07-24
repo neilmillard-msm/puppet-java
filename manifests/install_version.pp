@@ -5,7 +5,7 @@ define java::install_version (
   $package_name = '',
   $rpm_filename = '',
   $source       = $java::source_url,
-  $add_jce      = true,
+  $jce_repo_url = $java::jce_repo_url,
 ) {
   $split_out = split($major_minor, '_')
   $major = $split_out[0]
@@ -45,8 +45,9 @@ define java::install_version (
 
   # Add JCE
   class { 'java::jce':
-    java_major_version => "$major",
+    java_major_version => $major,
     jdk_path           => "/usr/java/jdk1.${major}.0_${minor}",
+    repo_url           => $jce_repo_url,
     require            => Package["jdk 1.${major}.0_${minor}-fcs"]
   }
 
