@@ -3,7 +3,7 @@
 # driver_repo = used as part of the download url
 # repo_url = main url such as http://download.oracle.com/otn-pub/java/jce/7/
 class java::jce (
-  $repo_url = undef,
+  $repo_url = 'https://artifactory3-eu1.moneysupermarket.com/artifactory',
   $java_major_version = 7,
   $jdk_path = '/usr/java/default',
   $driver_repo = 'ext-release-local',
