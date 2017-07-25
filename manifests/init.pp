@@ -1,6 +1,10 @@
 #
-#
+# need to override jce_url as direct download not permitted
+# original download from http://download.oracle.com/otn-pub/java/jce
+# link is no good without authentication token,
+# goto http://download.oracle.com and search for jce
 class java (
+  $jce_repo_url        = 'https://artifactory3-eu1.moneysupermarket.com/artifactory',
   $source_url          = 'https://download.oracle.com/otn-pub/java/jdk/7u51-b13',
   $java_major_version  = 7,
   $java_minor_version  = 51,
@@ -34,7 +38,8 @@ class java (
 
   create_resources ( 'install_version', $additional_versions )
   java::install_version {"${java_major_version}_${java_minor_version}":
-    source => $source_url,
+    source       => $source_url,
+    jce_repo_url => $jce_repo_url,
   }
 
   file { 'default java':
