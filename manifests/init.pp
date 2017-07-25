@@ -1,8 +1,11 @@
 #
 # need to override jce_url as direct download not permitted
+# original download from http://download.oracle.com/otn-pub/java/jce
+# link is no good without authentication token,
+# goto http://download.oracle.com and search for jce
 class java (
+  $jce_repo_url,
   $source_url          = 'https://download.oracle.com/otn-pub/java/jdk/7u51-b13',
-  $jce_repo_url        = 'http://download.oracle.com/otn-pub/java/jce',
   $java_major_version  = 7,
   $java_minor_version  = 51,
   $additional_versions = {}
