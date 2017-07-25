@@ -24,7 +24,7 @@ Hiera property required:
 
 ```
 java::source_url: "http://download.oracle.com/otn-pub/java/jdk/7u51-b13"
-java::jce_repo_url:
+java::jce_repo_url: "http://yourcachelocation/jce"
 ```
 
 
